@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.w3.org/1999/xhtml"
+        layout:decorate="~{dish/layouts/main_layout.html}"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymleaf-extras-springsecurity5"
+        lang="pl">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Dania - edycja</title>
+
+</head>
+<body>
+
+
+<div layout:fragment="content">
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <!------------------------------------EDYTUJ DANIE--------------------------------------------->
+        <div align="center">
+            <h1>Aktualizuj danie</h1>
+            <br/>
+            <form action="#" th:action="@{/save_drink}" th:object="${dish}"
+                  method="post">
+
+                <div class="form-group">
+                    <label for="id_produktu">Numer identyfikacyjny</label>
+                    <input type="text" class="form-control" id="id_produktu" readonly="readonly" th:field="*{id}"
+                           aria-describedby="id_help" required>
+                    <small id="id_help" class="form-text text-muted"> To pole jest tylko do odczytu
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="nazwa_produktu">Nazwa</label>
+                    <input type="text" class="form-control" id="nazwa_produktu" placeholder="Wpisz nazwę"
+                           aria-describedby="name_help"
+                           th:field="*{name}" required>
+                    <small id="name_help" class="form-text text-muted"> Edytuj nazwe
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="opis_produktu">Opis</label>
+                    <input type="text" class="form-control" id="opis_produktu" aria-describedby="desc_help"
+                           placeholder="Wpisz opis" th:field="*{description}">
+                    <small id="desc_help" class="form-text text-muted"> Edytuj opis
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="cena_produktu">Cena</label>
+                    <input type="number" class="form-control" id="cena_produktu" placeholder="Cena w zł."
+                           aria-describedby="price_help"
+                           th:field="*{price}">
+                    <small id="price_help" class="form-text text-muted"> Edytuj cenę
+                    </small>
+                </div>
+
+
+                <button type="submit" class="btn btn-success">Aktualizuj danie</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.w3.org/1999/xhtml"
+        layout:decorate="~{dish/layouts/main_layout.html}"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        lang="pl">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Dania | MVC Restaurant</title>
+
+</head>
+<body>
+
+<!------------------------------------DANIA Powyżej 10zł --------------------------------------------->
+<div layout:fragment="content">
+    <div align="center">
+        <h1 class="display-2">Polecane</h1>
+
+
+        <br/><br/>
+        <div/>
+
+
+        <table class="table table-hover ">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nazwa</th>
+                <th>Cena</th>
+                <th>Opis</th>
+
+
+            </tr>
+            </thead>
+            <tbody class="thead-light">
+
+
+            <tr th:each="dish : ${expensiveDishes}">
+                <td th:text="${dish.id}">Id</td>
+                <td th:text="${dish.name} ">Nazwa</td>
+                <td th:text="${dish.price} + zł">Cena</td>
+                <td th:text="${dish.description} ">Opis</td>
+
+
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+</body>
+</html>

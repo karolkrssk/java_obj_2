@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.w3.org/1999/xhtml"
+        layout:decorate="~{dish/layouts/main_layout.html}"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymleaf-extras-springsecurity5"
+        lang="pl">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Dania | MVC Restaurant</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+
+
+    <!----------------------------------------------DANIA GLOWNE---------------------------------------------->
+
+    <h2>Dania główne:</h2>
+
+    <div th:if="${food != null}">
+        <table border="1" cellpadding="10">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nazwa</th>
+                <th>Cena</th>
+                <th>Opis:</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Akcja:</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="dish : ${food}">
+                <td th:text="${dish.id}">Id</td>
+                <td th:text="${dish.name}">Nazwa</td>
+                <td th:text="${dish.price}">Cena</td>
+                <td th:text="${dish.description}">Opis</td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{'/edit/' + ${dish.id}}">Edytuj</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/delete/' + ${dish.id}}">Usuń</a>
+                </td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</body>
+</html>
